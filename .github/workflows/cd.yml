@@ -6,20 +6,6 @@ on:
       - master
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: npm install and build webpack
-        run: |
-          npm install
-          npm run build
-      - uses: actions/upload-artifact@master
-        with:
-          name: webpack artifacts
-          path: public/
   deploy:
   
     runs-on: ubuntu-latest
@@ -27,6 +13,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v1
+        - name: npm install and build webpack
+        run: |
+          npm install
+          npm run build
       - name: configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
