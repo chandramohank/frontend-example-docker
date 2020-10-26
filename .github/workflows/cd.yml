@@ -4,7 +4,6 @@ on:
   push:
     branches-ignore:
       - master
-
 jobs:
   deploy:
   
@@ -36,7 +35,7 @@ jobs:
           ECR_REPOSITORY: dev-ecr_repo
           IMAGE_TAG:  ${{github.sha}} 
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --file ./Dockefile
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
       - name: Fill in new image id in the amzon ecs task definition.
