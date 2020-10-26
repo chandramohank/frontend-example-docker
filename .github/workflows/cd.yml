@@ -32,7 +32,7 @@ jobs:
         id: deploy-ecr
         env:
           ECR_REGISTRY: ${{steps.login-ecr.outputs.registry}}
-          ECR_REPOSITORY: dev-ecr_repo
+          ECR_REPOSITORY: 347177278378.dkr.ecr.ap-south-1.amazonaws.com/learning
           IMAGE_TAG:  ${{github.sha}} 
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
